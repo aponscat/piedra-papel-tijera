@@ -8,7 +8,7 @@ use Apons\PiedraPapelTijera\Players\GuesserPlayer;
 //use Apons\PiedraPapelTijera\Players\HalfGuesserHalfRandomPlayer;
 use Apons\PiedraPapelTijera\Players\HumanPlayer;
 
-$player1Name='Player1';
+$player1Name='Biel';
 $player2Name='Player2';
 
 $rounds=5;

@@ -35,7 +35,7 @@ class PiedraPapelTijera {
                 $winnerName=$this->player1->name;
             } else {
                 $this->movementWins[$movement2]++;
-                $winnerName=$this->player1->name;
+                $winnerName=$this->player2->name;
             }
             echo "ronda $i - $winnerName wins. ";
             echo $this->humanTextMovements[$movement1];
@@ -52,10 +52,10 @@ class PiedraPapelTijera {
             echo $this->wins[0]." empates\n";
         }       
         if ($this->wins[1]) {
-            echo $this->wins[1]." victorias del jugador ".$this->player1->name."\n";
+            echo $this->wins[1]." victorias de ".$this->player1->name."\n";
         }       
         if ($this->wins[2]) {
-            echo $this->wins[2]." victorias del jugador ".$this->player2->name."\n";
+            echo $this->wins[2]." victorias de ".$this->player2->name."\n";
         }  
 
         if ($this->wins[1]>$this->wins[2]) {
