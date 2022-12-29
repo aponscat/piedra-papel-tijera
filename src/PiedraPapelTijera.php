@@ -6,6 +6,7 @@ use Apons\PiedraPapelTijera\Players\BasePlayer;
 
 class PiedraPapelTijera {
     public $movements=['O','P','T'];
+    public $humanTextMovements=['O'=>'piedra', 'P'=>'papel', 'T'=>'tijera'];
     public int $plays;
     public BasePlayer $player1;
     public BasePlayer $player2;
@@ -25,6 +26,8 @@ class PiedraPapelTijera {
             [$movement1, $movement2, $winner]=$this->play();
             while ($winner==0) {
                 echo "EMPATE!\n";
+                sleep(3);
+                $this->cls();
                 [$movement1, $movement2, $winner]=$this->play();
             }
             if ($winner==1) {
@@ -34,7 +37,13 @@ class PiedraPapelTijera {
                 $this->movementWins[$movement2]++;
                 $winnerName=$this->player1->name;
             }
-            echo "ronda $i - $winnerName wins. Movements $movement1 vs. $movement2\n";
+            echo "ronda $i - $winnerName wins. ";
+            echo $this->humanTextMovements[$movement1];
+            echo " vs. ";
+            echo $this->humanTextMovements[$movement2];
+            echo "\n";
+            sleep(3);
+            $this->cls();
         }
         //print_r($this->wins);        
         //print_r($this->movementWins); 
@@ -57,16 +66,18 @@ class PiedraPapelTijera {
     }
 
     function play() {
-        [$symbol1, $symbol2] = $this->drawn();
+        [$symbol1, $symbol2] = $this->draw();
         $winner=$this->whoWins($symbol1, $symbol2);
         $this->wins[$winner]++;
         return [$symbol1, $symbol2, $winner];
     }
 
-    function drawn(): array{
+    function draw(): array{
 
         $movement1=$this->player1->getMovement($this->prevPlayer2);
+        echo chr(27).chr(91).'H'.chr(27).chr(91).'J';
         $movement2=$this->player2->getMovement($this->prevPlayer1);
+        $this->cls();
 
         $this->prevPlayer1=$movement1;
         $this->prevPlayer2=$movement2;
@@ -102,5 +113,9 @@ class PiedraPapelTijera {
                 return 2;
             } 
         }
+    }
+
+    public function cls() {
+        echo chr(27).chr(91).'H'.chr(27).chr(91).'J';
     }
 }
